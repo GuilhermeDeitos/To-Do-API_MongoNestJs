@@ -6,27 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
+exports.UsersModule = void 0;
 const common_1 = require("@nestjs/common");
-const app_controller_1 = require("./app.controller");
-const app_service_1 = require("./app.service");
-const tasks_module_1 = require("./tasks/tasks.module");
+const users_controller_1 = require("./users.controller");
+const user_service_1 = require("./shared/user.service");
 const mongoose_1 = require("@nestjs/mongoose");
-const users_module_1 = require("./users/users.module");
-const auth_module_1 = require("./auth/auth.module");
-let AppModule = class AppModule {
+const user_schema_1 = require("./schemas/user.schema");
+let UsersModule = class UsersModule {
 };
-AppModule = __decorate([
+UsersModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forRoot('mongodb://127.0.0.1:27017/Api_Tasks?directConnection=true'),
-            tasks_module_1.TasksModule,
-            users_module_1.UsersModule,
-            auth_module_1.AuthModule
+            mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }])
         ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
+        controllers: [users_controller_1.UsersController],
+        providers: [user_service_1.UserService],
+        exports: [user_service_1.UserService]
     })
-], AppModule);
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+], UsersModule);
+exports.UsersModule = UsersModule;
+//# sourceMappingURL=users.module.js.map

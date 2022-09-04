@@ -12,29 +12,29 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.TasksController = void 0;
+exports.UsersController = void 0;
 const common_1 = require("@nestjs/common");
-const task_1 = require("./shared/task");
-const task_service_1 = require("./shared/task.service");
+const user_1 = require("./shared/user");
+const user_service_1 = require("./shared/user.service");
 const jwt_auth_guard_1 = require("../Auth/shared/jwt-auth.guard");
-let TasksController = class TasksController {
-    constructor(taskService) {
-        this.taskService = taskService;
+let UsersController = class UsersController {
+    constructor(userService) {
+        this.userService = userService;
     }
     async getAll() {
-        return this.taskService.getAll();
+        return this.userService.getAll();
     }
     async getById(id) {
-        return this.taskService.getById(id);
+        return this.userService.getById(id);
     }
-    async create(task) {
-        return this.taskService.create(task);
+    async create(user) {
+        return this.userService.create(user);
     }
-    async update(id, task) {
-        return this.taskService.update(id, task);
+    async update(user, id) {
+        return this.userService.update(id, user);
     }
     async delete(id) {
-        this.taskService.delete(id);
+        this.userService.delete(id);
         return 'Tarefa Deletada';
     }
 };
@@ -44,43 +44,43 @@ __decorate([
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "getAll", null);
+], UsersController.prototype, "getAll", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Get)(':id'),
+    (0, common_1.Get)(":id"),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "getById", null);
+], UsersController.prototype, "getById", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [task_1.Task]),
+    __metadata("design:paramtypes", [user_1.User]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "create", null);
+], UsersController.prototype, "create", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Put)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __param(1, (0, common_1.Body)()),
+    (0, common_1.Put)(":id"),
+    __param(0, (0, common_1.Body)()),
+    __param(1, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, task_1.Task]),
+    __metadata("design:paramtypes", [user_1.User, String]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "update", null);
+], UsersController.prototype, "update", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
-    (0, common_1.Delete)(':id'),
+    (0, common_1.Delete)(":id"),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
     __metadata("design:returntype", Promise)
-], TasksController.prototype, "delete", null);
-TasksController = __decorate([
-    (0, common_1.Controller)('tasks'),
-    __metadata("design:paramtypes", [task_service_1.TaskService])
-], TasksController);
-exports.TasksController = TasksController;
-//# sourceMappingURL=tasks.controller.js.map
+], UsersController.prototype, "delete", null);
+UsersController = __decorate([
+    (0, common_1.Controller)('users'),
+    __metadata("design:paramtypes", [user_service_1.UserService])
+], UsersController);
+exports.UsersController = UsersController;
+//# sourceMappingURL=users.controller.js.map
